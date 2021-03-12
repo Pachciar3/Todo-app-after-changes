@@ -1,19 +1,26 @@
-
+import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
+  Route
 } from "react-router-dom";
+import { connect } from "react-redux";
+import { fetchRequested } from "./components/TodoApp/redux";
 
 import './App.css';
 
 import Container from '@material-ui/core/Container';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import Messages from "./ui/containers/Messages"
 import Home from "./pages/Home";
 import Todo from "./pages/Todo";
 
-function App() {
+function App({ fetchRequested }) {
+  useEffect(() => {
+    fetchRequested();
+  }, [fetchRequested])
+
   return (
     <div className="App">
       <Router>
@@ -29,6 +36,7 @@ function App() {
               </Route>
             </Switch>
           </Container>
+          <Messages />
         </main>
         <Footer />
       </Router>
@@ -36,4 +44,15 @@ function App() {
   );
 }
 
-export default App;
+const mapStateToProps = state => ({
+
+});
+
+const mapDispatchToProps = dispatch => ({
+  fetchRequested: () => dispatch(fetchRequested())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(App);
