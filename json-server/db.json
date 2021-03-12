@@ -1,0 +1,11 @@
+{
+  "tasks": [
+    { "id": 1, "name": "Buy flip-slops","date": "2131244214", "description": "I like this", "priority": false },
+    { "id": 2, "name": "End interview task","date": "2136124214", "description": "Seriously important", "priority": true },
+    { "id": 3, "name": "Be happy","date": "2131242144", "description": "The most important, but not easy", "priority": true },
+    { "id": 4, "name": "Buy inner tube for bicycle","date": "2132124214", "description": "I have to do this", "priority": false }
+  ],
+  "comments": [
+    { "id": 1, "body": "some comment", "taskId": 1 }
+  ]
+}
