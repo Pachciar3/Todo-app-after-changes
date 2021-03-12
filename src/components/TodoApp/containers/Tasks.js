@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import TasksList from "../components/TasksList";
+import SmallForm from "./SmallForm";
 import { fetchRequested } from "../redux";
 import CircularProgress from '@material-ui/core/CircularProgress';
 
@@ -11,7 +12,7 @@ class Users extends Component {
     const { users, isLoading } = this.props;
     return (
       <div className="container">
-        <h2>Users</h2>
+        <SmallForm />
         {isLoading && <CircularProgress />}
         <TasksList users={users} />
       </div>

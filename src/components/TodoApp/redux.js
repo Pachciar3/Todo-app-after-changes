@@ -2,6 +2,18 @@ export const FETCH_USERS_REQUESTED = "users/FETCH_USERS_REQUESTED";
 export const FETCH_USERS_SUCCEDED = "users/FETCH_USERS_SUCCEDED";
 export const FETCH_USERS_FAILED = "users/FETCH_USERS_FAILED";
 
+// export const CREATE_TASK_REQUESTED = "users/CREATE_TASK_REQUESTED";
+// export const CREATE_TASK_SUCCEDED = "users/CREATE_TASK_SUCCEDED";
+// export const CREATE_TASK_FAILED = "users/CREATE_TASK_FAILED";
+
+// export const EDIT_TASK_REQUESTED = "users/EDIT_TASK_REQUESTED";
+// export const EDIT_TASK_SUCCEDED = "users/EDIT_TASK_SUCCEDED";
+// export const EDIT_TASK_FAILED = "users/EDIT_TASK_FAILED";
+
+// export const DELETE_TASK_REQUESTED = "users/DELETE_TASK_REQUESTED";
+// export const DELETE_TASK_SUCCEDED = "users/DELETE_TASK_SUCCEDED";
+// export const DELETE_TASK_FAILED = "users/DELETE_TASK_FAILED";
+
 const INITIAL_STATE = {
   users: [],
   isLoading: false,

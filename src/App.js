@@ -26,7 +26,7 @@ function App({ fetchRequested }) {
       <Router>
         <Header />
         <main className="App-main">
-          <Container maxWidth="false">
+          <Container maxWidth="lg">
             <Switch>
               <Route path="/todo">
                 <Todo />
