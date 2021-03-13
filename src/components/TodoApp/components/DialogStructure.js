@@ -1,8 +1,4 @@
-import React, { useState } from "react";
-
-import { connect } from "react-redux";
-
-import { fetchRequested } from "../redux";
+import React from "react";
 
 import Dialog from '@material-ui/core/Dialog';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -17,8 +13,6 @@ import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Slide from '@material-ui/core/Slide';
 
-import api from "../../../api"
-
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
 });
@@ -31,36 +25,15 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(2),
     flex: 1,
   },
+  formContainer: {
+    padding: 20
+  },
+  buttonContainer: { display: "flex", justifyContent: "flex-end" }
 }));
 
-function DialogForm({ handleClose, openForm, defaultValues, fetchRequested, patchData = false }) {
-  const [formValues, setFormValues] = useState(defaultValues)
-  const [error, setError] = useState(false);
+function DialogStructure({ handleClose, openForm, handleSubmit, formValues, handleChange }) {
   const classes = useStyles();
 
-
-  const handleChange = (e) => {
-    console.log(e)
-    setFormValues({
-      ...formValues,
-      [e.target.name]: e.target.type === "checkbox" ? e.target.checked : e.target.value
-    })
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (formValues.name && formValues.date && formValues.description) {
-      handleClose();
-      setError(false);
-      if (patchData) {
-        api.patch(`/tasks/${patchData.id}`, formValues).then(fetchRequested())
-      } else {
-        api.post("/tasks", formValues).then(fetchRequested())
-      }
-    } else {
-      setError("Please fill the form");
-    }
-  }
   return (
     <Dialog fullScreen open={openForm} onClose={handleClose} TransitionComponent={Transition}>
       <AppBar className={classes.appBar}>
@@ -73,7 +46,7 @@ function DialogForm({ handleClose, openForm, defaultValues, fetchRequested, patc
           </IconButton>
         </Toolbar>
       </AppBar>
-      <div style={{ padding: 20 }}>
+      <div className={classes.formContainer}>
         <form onSubmit={handleSubmit}>
           <TextField
             autoFocus
@@ -115,21 +88,13 @@ function DialogForm({ handleClose, openForm, defaultValues, fetchRequested, patc
             control={<Switch name="priority" checked={formValues.priority} onChange={handleChange} />}
             label="Important Task"
           />
-          <div style={{ display: "flex", justifyContent: "flex-end" }}>
+          <div className={classes.buttonContainer}>
             <Button type="submit" variant="contained" color="primary">Send</Button>
           </div>
-          {error}
         </form>
       </div>
     </Dialog>
   )
 }
 
-const mapDispatchToProps = dispatch => ({
-  fetchRequested: () => dispatch(fetchRequested())
-});
-
-export default connect(
-  false,
-  mapDispatchToProps
-)(DialogForm);
+export default DialogStructure;

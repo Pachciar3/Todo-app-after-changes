@@ -7,13 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import Drawer from '@material-ui/core/Drawer';
-import {
-  NavLink,
-} from "react-router-dom";
+import Menu from './Menu';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -34,21 +28,10 @@ function Header() {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
     }
-
     setMenuOpen(open);
   };
 
   const classes = useStyles();
-  const menuList = [
-    {
-      text: "Home",
-      path: "/"
-    },
-    {
-      text: "Todo",
-      path: "/todo"
-    }
-  ]
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -62,23 +45,9 @@ function Header() {
           <Button color="inherit">Login</Button>
         </Toolbar>
       </AppBar>
-      <Drawer anchor="left" open={menuOpen} onClose={toggleDrawer(false)}>
-        <div
-          role="presentation"
-          onClick={toggleDrawer(false)}
-          onKeyDown={toggleDrawer(false)}
-        >
-          <List>
-            {menuList.map((el) => (
-              <NavLink to={el.path}>
-                <ListItem button key={el.text}>
-                  <ListItemText>{el.text}</ListItemText>
-                </ListItem>
-              </NavLink>
-            ))}
-          </List>
-        </div>
-      </Drawer>
+
+      <Menu menuOpen={menuOpen} toggleDrawer={toggleDrawer} />
+
     </div>
   );
 }

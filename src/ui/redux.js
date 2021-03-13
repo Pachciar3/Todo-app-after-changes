@@ -29,8 +29,8 @@ const redux = (state = INITIAL_STATE, action) => {
         messages
       };
     case REMOVE_MESSAGE:
-      const mesages = [...state.messages];
-      const messagesAfterRemove = mesages.filter((message) => message.id !== action.payload)
+      const newMessages = [...state.messages];
+      const messagesAfterRemove = newMessages.filter((message) => message.id !== action.payload)
       return {
         ...state,
         messages: messagesAfterRemove

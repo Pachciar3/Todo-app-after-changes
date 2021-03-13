@@ -8,7 +8,6 @@ import { connect } from "react-redux";
 import { fetchRequested } from "./components/TodoApp/redux";
 
 import './App.css';
-
 import Container from '@material-ui/core/Container';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -44,15 +43,11 @@ function App({ fetchRequested }) {
   );
 }
 
-const mapStateToProps = state => ({
-
-});
-
 const mapDispatchToProps = dispatch => ({
   fetchRequested: () => dispatch(fetchRequested())
 });
 
 export default connect(
-  mapStateToProps,
+  false,
   mapDispatchToProps
 )(App);

@@ -1,29 +1,29 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-
-import TasksList from "../components/TasksList";
-import SmallForm from "./SmallForm";
 import { fetchRequested } from "../redux";
-import CircularProgress from '@material-ui/core/CircularProgress';
 
-class Users extends Component {
+import CircularProgress from '@material-ui/core/CircularProgress';
+import TasksList from "../components/TasksList";
+import OpenNewTaskDialog from "./OpenNewTaskDialog.js";
+
+class Tasks extends Component {
 
   render() {
-    const { users, isLoading } = this.props;
+    const { tasks, isLoading } = this.props;
     return (
       <div className="container">
-        <SmallForm />
+        <OpenNewTaskDialog />
         {isLoading && <CircularProgress />}
-        <TasksList users={users} />
+        <TasksList tasks={tasks} />
       </div>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  users: state.users.users,
-  isLoading: state.users.isLoading,
-  isError: state.users.isError
+  tasks: state.tasks.tasks,
+  isLoading: state.tasks.isLoading,
+  isError: state.tasks.isError
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -33,4 +33,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(Users);
+)(Tasks);

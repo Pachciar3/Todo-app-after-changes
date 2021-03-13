@@ -1,15 +1,13 @@
 import React from "react";
 
 import List from '@material-ui/core/List';
+import TasksCollapse from "../containers/TaskCollapse";
 
-import TasksListElement from "./TasksListElement";
-
-function TasksList({ users }) {
-
+function TasksList({ tasks }) {
   return (
     <List >
-      {users.map(user => (
-        <TasksListElement user={user} />
+      {tasks.map(task => (
+        <TasksCollapse task={task} />
       ))}
     </List>
   );
