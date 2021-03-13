@@ -15,7 +15,7 @@ function* fetchUsers() {
     yield put(addMessage({ type: "success", text: "Tasks loaded" }));
   } catch (e) {
     yield put(fetchFailed());
-    yield put(addMessage({ type: "failed", text: "Tasks are not loaded" }));
+    yield put(addMessage({ type: "error", text: `${e} Tasks are not loaded` }));
   }
 }
 

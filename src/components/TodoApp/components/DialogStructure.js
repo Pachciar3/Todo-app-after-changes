@@ -12,6 +12,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 import Slide from '@material-ui/core/Slide';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -31,7 +32,7 @@ const useStyles = makeStyles((theme) => ({
   buttonContainer: { display: "flex", justifyContent: "flex-end" }
 }));
 
-function DialogStructure({ handleClose, openForm, handleSubmit, formValues, handleChange }) {
+function DialogStructure({ handleClose, openForm, handleSubmit, formValues, handleChange, sending }) {
   const classes = useStyles();
 
   return (
@@ -89,6 +90,7 @@ function DialogStructure({ handleClose, openForm, handleSubmit, formValues, hand
             label="Important Task"
           />
           <div className={classes.buttonContainer}>
+            {sending && <CircularProgress />}
             <Button type="submit" variant="contained" color="primary">Send</Button>
           </div>
         </form>

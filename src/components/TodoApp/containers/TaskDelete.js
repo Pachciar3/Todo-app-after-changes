@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { fetchRequested } from "../redux";
 import { addMessage } from "../../../ui/redux";
@@ -12,8 +12,8 @@ function TaskDelete({ task, addMessage, fetchRequested }) {
     const newTask = { ...task };
     newTask.done = !newTask.done
     api.delete(`/tasks/${task.id}`)
-      .then(() => fetchRequested())
       .then(() => addMessage({ type: "warning", text: "Task deleted !" }))
+      .then(() => fetchRequested())
       .catch(() => addMessage({ type: "error", text: "Error !!. Task not deleted" }))
   };
 
