@@ -8,14 +8,14 @@ import { FETCH_TASKS_REQUESTED } from './components/TodoApp/redux';
 
 function* fetchUsers() {
   try {
-    yield put(addMessage({ type: "information", text: "Users requested" }));
-    const users = yield api.get('/tasks')
+    yield put(addMessage({ type: "information", text: "Tasks requested" }));
+    const users = yield api.get('/tasks?_sort=date&_order=asc')
 
     yield put(fetchSucceded(users));
-    yield put(addMessage({ type: "success", text: "Users loaded" }));
+    yield put(addMessage({ type: "success", text: "Tasks loaded" }));
   } catch (e) {
     yield put(fetchFailed());
-    yield put(addMessage({ type: "failed", text: "Users are not loaded" }));
+    yield put(addMessage({ type: "failed", text: "Tasks are not loaded" }));
   }
 }
 

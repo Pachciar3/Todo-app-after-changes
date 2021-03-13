@@ -6,7 +6,8 @@ import FormGroup from '@material-ui/core/FormGroup';
 import DialogAddAndChangeForm from "../containers/DialogAddAndChangeForm";
 
 const styles = {
-  formGroup: { display: "flex", justifyContent: "center" }
+  formGroup: { display: "flex", justifyContent: "center" },
+  form: { display: "flex" }
 }
 
 function SmallForm({ openForm, handleCloseForm, handleToggleForm, textValue, handleTextFieldChange }) {
@@ -21,12 +22,14 @@ function SmallForm({ openForm, handleCloseForm, handleToggleForm, textValue, han
 
   return (
     <>
-      <div style={styles.formGroup}>
+      <div style={styles.formGroup} onSubmit={handleToggleForm}>
         <FormGroup row>
-          <TextField id="filled-basic" label="Type text" variant="filled" value={textValue} onChange={handleTextFieldChange} />
-          <Button variant="contained" color="primary" onClick={handleToggleForm}>
-            Add
-        </Button>
+          <form style={styles.form}>
+            <TextField id="filled-basic" label="Type text" variant="filled" value={textValue} onChange={handleTextFieldChange} />
+            <Button type="submit" disabled={!textValue} variant="contained" color="primary" >
+              Add
+            </Button>
+          </form>
         </FormGroup>
       </div>
       {openForm && <DialogAddAndChangeForm handleClose={handleCloseForm} openForm={openForm} defaultValues={defaultValuesForDialogForm} />}

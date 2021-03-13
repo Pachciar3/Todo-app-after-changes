@@ -6,7 +6,8 @@ function OpenNewTaskDialog() {
   const [openForm, setOpenForm] = useState(false);
   const [textValue, setTextValue] = useState("");
 
-  const handleToggleForm = () => {
+  const handleToggleForm = (e) => {
+    e.preventDefault();
     if (openForm) {
       setOpenForm(false);
     } else {
@@ -16,6 +17,7 @@ function OpenNewTaskDialog() {
 
   const handleCloseForm = () => {
     setOpenForm(false);
+    setTextValue("");
   };
 
   const handleTextFieldChange = (e) => {

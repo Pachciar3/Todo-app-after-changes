@@ -7,7 +7,7 @@ function TasksList({ tasks }) {
   return (
     <List >
       {tasks.map(task => (
-        <TasksCollapse task={task} />
+        <TasksCollapse key={`task-${task.name}-${task.id}`} task={task} />
       ))}
     </List>
   );

@@ -10,16 +10,22 @@ import TaskDelete from "../containers/TaskDelete";
 import Button from '@material-ui/core/Button';
 import createDate from "../../../utils/createDate";
 
+
 function TasksListElement({ task, handleCollapseClick }) {
   const labelId = `checkbox-list-label-${task.id}`;
-  const priorityClass = task.priority ? "colored" : "";
+  const styles = {
+    task: {
+      margin: "5px 0px",
+      border: task.priority ? "2px dashed #d32f2f" : "none"
+    }
+  }
 
   return (
-    <ListItem key={task.id} role={undefined} dense>
+    <ListItem style={styles.task} key={task.id} role={undefined} dense>
       <ListItemIcon>
         <TaskDone task={task} labelId={labelId} />
       </ListItemIcon>
-      <ListItemText className={priorityClass} id={labelId} primary={task.name} secondary={createDate(task.date)} />
+      <ListItemText id={labelId} primary={task.name} secondary={createDate(task.date)} />
       <ListItemSecondaryAction>
         <TaskEdit task={task} />
         <TaskDelete task={task} />

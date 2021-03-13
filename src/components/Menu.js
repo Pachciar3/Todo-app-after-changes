@@ -29,8 +29,8 @@ function Menu({ menuOpen, toggleDrawer }) {
       >
         <List>
           {menuList.map((el) => (
-            <NavLink to={el.path}>
-              <ListItem button key={el.text}>
+            <NavLink key={el.text} to={el.path}>
+              <ListItem button>
                 <ListItemText>{el.text}</ListItemText>
               </ListItem>
             </NavLink>

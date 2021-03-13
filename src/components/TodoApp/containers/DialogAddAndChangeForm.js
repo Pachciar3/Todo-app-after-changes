@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { fetchRequested } from "../redux";
+import { addMessage } from '../../../ui/redux';
 
 import api from "../../../api"
 import DialogStructure from "../components/DialogStructure"
-import { addMessage } from '../../../ui/redux';
 
 function DialogAddAndChangeForm({ handleClose, openForm, defaultValues, fetchRequested, patchData = false, addMessage }) {
   const [formValues, setFormValues] = useState(defaultValues)
