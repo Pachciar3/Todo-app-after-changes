@@ -10,25 +10,28 @@ import Checkbox from '@material-ui/core/Checkbox';
 function TaskDone({ task, addMessage, labelId }) {
 
   const [checked, setChecked] = useState(task.done);
+  const [loading, setLoading] = useState(false);
 
   const handleCheckboxClick = () => {
-    const newTask = { ...task };
-    newTask.done = !newTask.done
+    setLoading(true);
+    const newTask = { ...task, done: !checked };
     api.patch(`/tasks/${task.id}`, newTask)
       .then(() => setChecked((checked) => checked = !checked))
-      .then(() => addMessage({ type: "success", text: "Done changed !" }))
-      .catch(() => addMessage({ type: "error", text: "Error !!. Task not updated" }))
+      .then(() => {
+        addMessage({ type: "success", text: "Task changed !" });
+        setLoading(false);
+      })
+      .catch(() => { addMessage({ type: "error", text: "Error !!. Task not updated" }); setLoading(false); })
   };
 
-  return (
 
+  return (
     <Checkbox
       edge="start"
       checked={checked}
-      tabIndex={-1}
-      disableRipple
       inputProps={{ 'aria-labelledby': labelId }}
-      onClick={handleCheckboxClick}
+      onChange={handleCheckboxClick}
+      disabled={loading}
     />
 
   );

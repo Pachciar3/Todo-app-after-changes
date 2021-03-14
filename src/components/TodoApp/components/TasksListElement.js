@@ -7,7 +7,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import TaskDone from "../containers/TaskDone";
 import TaskEdit from "../containers/TaskEdit";
 import TaskDelete from "../containers/TaskDelete";
-import Button from '@material-ui/core/Button';
 import createDate from "../../../utils/createDate";
 
 
@@ -21,17 +20,12 @@ function TasksListElement({ task, handleCollapseClick }) {
   }
 
   return (
-    <ListItem style={styles.task} key={task.id} role={undefined} dense>
-      <ListItemIcon>
-        <TaskDone task={task} labelId={labelId} />
-      </ListItemIcon>
+    <ListItem style={styles.task} key={task.id} role={undefined} dense button onClick={handleCollapseClick}>
       <ListItemText id={labelId} primary={task.name} secondary={createDate(task.date)} />
       <ListItemSecondaryAction>
+        <TaskDone task={task} labelId={labelId} />
         <TaskEdit task={task} />
         <TaskDelete task={task} />
-        <Button onClick={handleCollapseClick} variant="contained" edge="end" >
-          More
-        </Button>
       </ListItemSecondaryAction>
     </ListItem>
   );

@@ -1,4 +1,4 @@
-export default function convertDate(timestamp) {
+export default function createDate(timestamp) {
   const month = [
     "January", "February ", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
   ]
@@ -7,7 +7,8 @@ export default function convertDate(timestamp) {
   }
   const date = new Date(timestamp);
 
-  return `${date.getDay()} ${month[date.getMonth()]} ${date.getFullYear()}, ${prepareTime(date.getHours())}:${prepareTime(date.getMinutes())}:${prepareTime(
+
+  return `${date.getDate()} ${month[date.getMonth()]} ${date.getFullYear()}, ${prepareTime(date.getHours())}:${prepareTime(date.getMinutes())}:${prepareTime(
     date.getSeconds(),
   )}`;
 }

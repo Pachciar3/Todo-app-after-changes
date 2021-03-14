@@ -9,7 +9,6 @@ import DialogStructure from "../components/DialogStructure"
 function DialogAddAndChangeForm({ handleClose, openForm, defaultValues, fetchRequested, patchData = false, addMessage }) {
   const [formValues, setFormValues] = useState(defaultValues)
   const [sending, setSending] = useState(false);
-  // const [hasError, setHasError] = useState(false);
 
   const handleChange = (e) => {
     setFormValues({
@@ -22,39 +21,27 @@ function DialogAddAndChangeForm({ handleClose, openForm, defaultValues, fetchReq
     e.preventDefault();
     if (formValues.name && formValues.date && formValues.description) {
       setSending(true);
+      function apiRequest(type, path, errorMessage, successMessage) {
+        api[type](path, formValues)
+          .then(() => {
+            addMessage({ type: "success", text: successMessage });
+            setSending(false);
+          })
+          .then(() => {
+            fetchRequested();
+          })
+          .then(() => {
+            handleClose();
+          })
+          .catch(() => {
+            setSending(false);
+            addMessage({ type: "error", text: errorMessage });
+          })
+      }
       if (patchData) {
-        api.patch(`/tasks/${patchData.id}`, formValues)
-          .then(() => {
-            addMessage({ type: "success", text: "Task updated" });
-            setSending(false);
-          })
-          .then(() => {
-            fetchRequested();
-          })
-          .then(() => {
-            handleClose();
-          })
-          .catch(() => {
-            setSending(false);
-            addMessage({ type: "error", text: "Error. Task not updated" });
-          })
+        apiRequest("patch", `/tasks/${patchData.id}`, "Error. Task not updated", "Task updated");
       } else {
-        api.post("/tasks", formValues)
-          .then(() => {
-            addMessage({ type: "success", text: "New task added" });
-            setSending(false);
-          })
-          .then(() => {
-            fetchRequested();
-          })
-          .then(() => {
-            handleClose();
-          })
-          .catch(() => {
-            setSending(false);
-            addMessage({ type: "error", text: "Error. Task not added" }
-            );
-          })
+        apiRequest("post", `/tasks`, "Error. Task not added", "New task added");
       }
     } else {
       addMessage({ type: "warning", text: "Please fill all fields" })
