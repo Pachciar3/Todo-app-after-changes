@@ -15,7 +15,7 @@ TODO APP created with react and redux
 
 ## Used technologies
 
-1. React.js: 17.0.1
+1. React.js: 16.13.1
 2. Redux: 4.0.5
 3. Redux-saga: 1.1.3
 4. React-router-dom: 5.2.0
