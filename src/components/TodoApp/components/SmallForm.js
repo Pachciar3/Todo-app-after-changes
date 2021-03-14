@@ -24,7 +24,7 @@ function SmallForm({ openForm, handleCloseForm, handleToggleForm, textValue, han
     <>
       <div style={styles.formGroup} onSubmit={handleToggleForm}>
         <FormGroup row>
-          <form style={styles.form}>
+          <form style={styles.form} data-testId="small-form">
             <TextField id="filled-basic" label="Type text" variant="filled" value={textValue} onChange={handleTextFieldChange} />
             <Button type="submit" disabled={!textValue} variant="contained" color="primary" >
               Add
